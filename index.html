@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TuNiaX | Coming Soon</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-light: #f4f8fb;
+      --bg-dark: #1e1e1e;
+      --text-light: #333;
+      --text-dark: #f4f4f4;
+      --accent-light: #00796b;
+      --accent-dark: #00bfa5;
+    }
+
+    html[data-theme="light"] {
+      --bg-color: var(--bg-light);
+      --text-color: var(--text-light);
+      --accent-color: var(--accent-light);
+    }
+
+    html[data-theme="dark"] {
+      --bg-color: var(--bg-dark);
+      --text-color: var(--text-dark);
+      --accent-color: var(--accent-dark);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+      opacity: 0;
+      transition: background 0.3s, color 0.3s;
+      animation: fadeIn 2s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .logo {
+      max-width: 100px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin: 20px 0;
+      max-width: 600px;
+    }
+
+    .notify-form {
+      margin-top: 20px;
+    }
+
+    input[type="email"] {
+      padding: 10px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    .social-icons {
+      margin-top: 30px;
+    }
+
+    .social-icons a {
+      color: var(--accent-color);
+      margin: 0 10px;
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+
+    .dark-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: var(--accent-color);
+    }
+
+    /* Loading screen */
+    #loader {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-color);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 5px solid var(--accent-color);
+      border-top: 5px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 500px) {
+      h1 { font-size: 2rem; }
+      input[type="email"] { width: 180px; margin-bottom: 10px; }
+      .notify-form { flex-direction: column; display: flex; align-items: center; }
+      button { margin-left: 0; margin-top: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Spinner -->
+  <div id="loader"><div class="spinner"></div></div>
+
+  <!-- Dark Mode Toggle -->
+  <button class="dark-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <img src="Tunia x (1).png" alt="TuNiaX Logo" class="logo">
+
+  <h1>TuNiaX is Coming Soon</h1>
+  <p>Your AI-powered companion for early detection of Tuberculosis and Pneumonia using chest X-rays. Reliable, fast, and accurate diagnostics right at your fingertips.</p>
+
+  <div class="notify-form">
+    <form>
+      <input type="email" placeholder="Enter your email" required>
+      <button type="submit">Notify Me</button>
+    </form>
+  </div>
+
+  <!-- Social Media Icons -->
+  <div class="social-icons">
+    
+    <a href="https://www.linkedin.com/company/tuniax/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i></a>
+    
+  </div>
+
+  <div class="footer">
+    &copy; 2025 TuNiaX. All rights reserved.
+  </div>
+
+  <script>
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      html.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+    }
+
+    // Hide loader after 2 seconds
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
