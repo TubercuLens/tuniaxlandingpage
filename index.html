@@ -1,207 +1,111 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TuNiaX | Coming Soon</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TuNiaX — Coming Soon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg-light: #f4f8fb;
-      --bg-dark: #1e1e1e;
-      --text-light: #333;
-      --text-dark: #f4f4f4;
-      --accent-light: #00796b;
-      --accent-dark: #00bfa5;
-    }
-
-    html[data-theme="light"] {
-      --bg-color: var(--bg-light);
-      --text-color: var(--text-light);
-      --accent-color: var(--accent-light);
-    }
-
-    html[data-theme="dark"] {
-      --bg-color: var(--bg-dark);
-      --text-color: var(--text-dark);
-      --accent-color: var(--accent-dark);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: var(--bg-color);
-      color: var(--text-color);
+      background-color: #000;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
+      align-items: center;
       text-align: center;
-      opacity: 0;
-      transition: background 0.3s, color 0.3s;
-      animation: fadeIn 2s forwards;
+      padding: 0 20px;
+      position: relative;
     }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    /* Logo / Title Top Left */
+    .brand {
+      position: absolute;
+      top: 24px;
+      left: 32px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+      color: #fff;
     }
 
-    .logo {
-      max-width: 100px;
-      margin-bottom: 20px;
+    .brand span {
+      color: #00ffa3;
     }
 
     h1 {
-      font-size: 2.5rem;
-      color: var(--accent-color);
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .highlight {
+      color: #00ffa3;
     }
 
     p {
-      font-size: 1.1rem;
-      margin: 20px 0;
-      max-width: 600px;
+      color: #ccc;
+      font-size: 1rem;
+      margin-bottom: 40px;
     }
 
-    .notify-form {
-      margin-top: 20px;
-    }
-
-    input[type="email"] {
-      padding: 10px;
-      width: 250px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      padding: 10px 20px;
-      background-color: var(--accent-color);
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      margin-left: 10px;
+    .cta-button {
+      padding: 12px 24px;
+      border: 1px solid #00ffa3;
+      background: transparent;
+      color: #00ffa3;
+      font-size: 1rem;
+      border-radius: 30px;
       cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    button:hover {
-      opacity: 0.9;
+    .cta-button:hover {
+      background-color: #00ffa3;
+      color: #000;
     }
 
     .footer {
-      margin-top: 40px;
-      font-size: 0.9rem;
-      color: #888;
-    }
-
-    .social-icons {
-      margin-top: 30px;
-    }
-
-    .social-icons a {
-      color: var(--accent-color);
-      margin: 0 10px;
-      font-size: 1.5rem;
-      text-decoration: none;
-    }
-
-    .dark-toggle {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-size: 1.3rem;
-      color: var(--accent-color);
-    }
-
-    /* Loading screen */
-    #loader {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: var(--bg-color);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 5px solid var(--accent-color);
-      border-top: 5px solid transparent;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+      bottom: 20px;
+      font-size: 0.8rem;
+      color: #666;
     }
 
     @media (max-width: 500px) {
-      h1 { font-size: 2rem; }
-      input[type="email"] { width: 180px; margin-bottom: 10px; }
-      .notify-form { flex-direction: column; display: flex; align-items: center; }
-      button { margin-left: 0; margin-top: 10px; }
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+
+      .brand {
+        font-size: 1rem;
+        left: 20px;
+        top: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Loading Spinner -->
-  <div id="loader"><div class="spinner"></div></div>
 
-  <!-- Dark Mode Toggle -->
-  <button class="dark-toggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
-    <i class="fas fa-moon"></i>
-  </button>
+  <!-- Top-left brand logo -->
+  <div class="brand">Tu<span>NiaX</span></div>
 
-  <img src="Tunia x (1).png" alt="TuNiaX Logo" class="logo">
+  <!-- Centered content -->
+  <h1>The future of <span class="highlight">X-ray Diagnosis</span></h1>
+  <p>AI that detects Tuberculosis and Pneumonia — with one chest X-ray.</p>
 
-  <h1>TuNiaX is Coming Soon</h1>
-  <p>Your AI-powered companion for early detection of Tuberculosis and Pneumonia using chest X-rays. Reliable, fast, and accurate diagnostics right at your fingertips.</p>
+  <button class="cta-button">Notify Me When It’s Ready</button>
 
-  <div class="notify-form">
-    <form>
-      <input type="email" placeholder="Enter your email" required>
-      <button type="submit">Notify Me</button>
-    </form>
-  </div>
+  <!-- Footer -->
+  <div class="footer">&copy; 2025 TuNiaX. All rights reserved.</div>
 
-  <!-- Social Media Icons -->
-  <div class="social-icons">
-    
-    <a href="https://www.linkedin.com/company/tuniax/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i></a>
-    
-  </div>
-
-  <div class="footer">
-    &copy; 2025 TuNiaX. All rights reserved.
-  </div>
-
-  <script>
-    // Dark Mode Toggle
-    function toggleDarkMode() {
-      const html = document.documentElement;
-      const current = html.getAttribute('data-theme');
-      html.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
-    }
-
-    // Hide loader after 2 seconds
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('loader').style.display = 'none';
-      }, 2000);
-    });
-  </script>
 </body>
 </html>
