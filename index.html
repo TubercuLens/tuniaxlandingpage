@@ -21,15 +21,14 @@
       background-color: #000;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       text-align: center;
-      padding: 0 20px;
-      padding-bottom: 80px;
+      padding: 100px 20px 80px; /* 👈 Top padding added */
       min-height: 100vh;
-      position: relative;
       box-sizing: border-box;
       overflow-x: hidden;
+      position: relative;
     }
 
     #vanta-bg {
@@ -42,17 +41,18 @@
     }
 
     .brand {
-      position: absolute;
+      position: fixed;
       top: 24px;
       left: 32px;
       font-weight: 700;
       font-size: 1.2rem;
       letter-spacing: 0.5px;
       color: #fff;
+      z-index: 10;
     }
 
     .brand span {
-      color: #fff; /* No green */
+      color: #fff;
     }
 
     h1 {
@@ -60,10 +60,11 @@
       font-weight: 700;
       margin-bottom: 20px;
       line-height: 1.2;
+      margin-top: 0;
     }
 
     .highlight {
-      color: #fff; /* Force white */
+      color: #fff;
     }
 
     p {
@@ -74,6 +75,7 @@
 
     #countdown {
       font-size: 1.1rem;
+      font-weight: 600; /* 👈 Increased weight */
       color: #fff;
       margin-bottom: 40px;
     }
