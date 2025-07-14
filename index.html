@@ -1,312 +1,332 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TuNiaX — Coming Soon</title>
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-    }
-
-    body {
-      color: #fff;
-      background-color: #000;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      text-align: center;
-      padding: 100px 20px 80px;
-      min-height: 100vh;
-      box-sizing: border-box;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    #vanta-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    .brand {
-      position: fixed;
-      top: 24px;
-      left: 32px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      letter-spacing: 0.5px;
-      color: #fff;
-      z-index: 10;
-    }
-
-    .brand span {
-      color: #fff;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      line-height: 1.2;
-      margin-top: 0;
-    }
-
-    .highlight {
-      color: #fff;
-    }
-
-    p {
-      color: #fff;
-      font-size: 1rem;
-      margin-bottom: 30px;
-    }
-
-    #countdown {
-      font-size: 1.7rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 40px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      width: 100%;
-      max-width: 320px;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    textarea {
-      padding: 12px 18px;
-      font-size: 1rem;
-      border: 1px solid #333;
-      border-radius: 10px;
-      width: 100%;
-      background-color: #111;
-      color: #fff;
-      resize: none;
-    }
-
-    input::placeholder,
-    textarea::placeholder {
-      color: #888;
-    }
-
-    textarea {
-      height: 100px;
-    }
-
-    button {
-      padding: 12px 24px;
-      border: 1px solid #00ffa3;
-      background: transparent;
-      color: #00ffa3;
-      font-size: 1rem;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      width: 100%;
-    }
-
-    button:hover {
-      background-color: #00ffa3;
-      color: #000;
-    }
-
-    .footer {
-      font-size: 0.8rem;
-      color: #666;
-      text-align: center;
-      margin-top: 40px;
-    }
-
-    /* ✅ Modal Popup Styles */
-    .popup-overlay {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .popup {
-      background-color: #111;
-      padding: 30px 24px;
-      border-radius: 12px;
-      text-align: center;
-      color: #fff;
-      max-width: 90%;
-      width: 320px;
-      box-shadow: 0 0 20px rgba(0, 255, 163, 0.2);
-      position: relative;
-      animation: fadeIn 0.4s ease-in-out;
-    }
-
-    .popup h2 {
-      margin-top: 0;
-      font-size: 1.3rem;
-      margin-bottom: 12px;
-    }
-
-    .popup p {
-      margin-bottom: 0;
-      color: #ccc;
-    }
-
-    .close-popup {
-      position: absolute;
-      top: 12px;
-      right: 14px;
-      color: #999;
-      font-size: 20px;
-      cursor: pointer;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
-    @media (max-width: 500px) {
-      h1 { font-size: 1.9rem; }
-      p { font-size: 0.95rem; }
-      .brand { font-size: 1rem; left: 20px; top: 20px; }
-      #countdown { font-size: 1rem; }
-      form { width: 90%; }
-      button { font-size: 0.95rem; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Background -->
-  <div id="vanta-bg"></div>
-
-  <!-- Brand -->
-  <div class="brand">Tu<span>NiaX</span></div>
-
-  <!-- Headline -->
-  <h1>AI-Powered Chest X-ray Screening for TB & Pneumonia</h1>
-  <p>Neural Networks that detects Tuberculosis and Pneumonia — with one chest X-ray.</p>
-
-  <!-- Countdown -->
-  <div id="countdown">Loading countdown...</div>
-
-  <!-- Form -->
-  <form action="https://formspree.io/f/xjkobdaz" method="POST" id="notify-form">
-    <input type="text" name="name" placeholder="Your name" required />
-    <input type="email" name="email" placeholder="Your email" required />
-    <textarea name="message" placeholder="Your message or thoughts (optional)"></textarea>
-    <button type="submit">Notify Me When It’s Ready</button>
-  </form>
-
-  <!-- Modal Thank You Popup -->
-  <div class="popup-overlay" id="thankyou-popup">
-    <div class="popup">
-      <div class="close-popup" onclick="closePopup()">✖</div>
-      <h2 id="popup-title">Thank you!</h2>
-      <p id="popup-message">We'll notify you when we launch.</p>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">&copy; 2025 TuNiaX. All rights reserved.</div>
-
-  <!-- Form Handling Script -->
-  <script>
-    const form = document.getElementById('notify-form');
-    const popup = document.getElementById('thankyou-popup');
-    const popupTitle = document.getElementById('popup-title');
-    const popupMessage = document.getElementById('popup-message');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const data = new FormData(form);
-      const name = data.get("name");
-
-      fetch(form.action, {
-        method: form.method,
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        if (response.ok) {
-          popupTitle.textContent = `Thank you, ${name}!`;
-          popup.style.display = "flex";
-          form.reset();
-        } else {
-          alert("Something went wrong. Please try again later.");
-        }
-      });
-    });
-
-    function closePopup() {
-      popup.style.display = "none";
-    }
-  </script>
-
-  <!-- Countdown Script -->
-  <script>
-    const launchDate = new Date("2025-10-01T00:00:00").getTime();
-    const countdownEl = document.getElementById("countdown");
-
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const diff = launchDate - now;
-
-      if (diff <= 0) {
-        countdownEl.innerHTML = "🚀 Launching soon!";
-        return;
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TuNiaX — Coming Soon</title>
+    <link rel="icon" href="favicon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
       }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const mins = Math.floor((diff / (1000 * 60)) % 60);
-      const secs = Math.floor((diff / 1000) % 60);
+      body {
+        color: #fff;
+        background-color: #000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 120px 20px 80px;
+        min-height: 100vh;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        position: relative;
+      }
 
-      countdownEl.innerHTML = `Launching in ${days}d ${hours}h ${mins}m ${secs}s`;
-    };
+      #vanta-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  </script>
+      .brand {
+        position: fixed;
+        top: 24px;
+        left: 32px;
+        font-weight: 700;
+        font-size: 1.2rem;
+        letter-spacing: 0.5px;
+        color: #fff;
+        z-index: 10;
+      }
 
-  <!-- Vanta Background -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-  <script>
-    VANTA.NET({
-      el: "#vanta-bg",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color: 0x007f55,            // muted green (less bright than #00ffa3)
-      backgroundColor: 0x000000,  // dark background
-      points: 8.00,               // less cluttered
-      maxDistance: 20.00,
-      spacing: 18.00
-    });
-  </script>
+      .brand span {
+        color: #fff;
+      }
 
-</body>
-</html>
+      .typing-header {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #fff;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 2px solid #00ffa3;
+        width: 100%;
+        max-width: 90vw;
+        margin-bottom: 12px;
+        animation: blinkCursor 0.75s step-end infinite;
+      }
+
+      @keyframes blinkCursor {
+        0%, 100% { border-color: transparent; }
+        50% { border-color: #00ffa3; }
+      }
+
+      .subtext {
+        color: #ccc;
+        font-size: 1rem;
+        margin-bottom: 40px;
+        max-width: 500px;
+      }
+
+      #countdown {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 40px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        width: 100%;
+        max-width: 320px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        padding: 12px 18px;
+        font-size: 1rem;
+        border: 1px solid #333;
+        border-radius: 10px;
+        width: 100%;
+        background-color: #111;
+        color: #fff;
+        resize: none;
+      }
+
+      input::placeholder,
+      textarea::placeholder {
+        color: #888;
+      }
+
+      textarea {
+        height: 100px;
+      }
+
+      button {
+        padding: 12px 24px;
+        border: 1px solid #00ffa3;
+        background: transparent;
+        color: #00ffa3;
+        font-size: 1rem;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+      }
+
+      button:hover {
+        background-color: #00ffa3;
+        color: #000;
+      }
+
+      .footer {
+        font-size: 0.8rem;
+        color: #666;
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      .popup-overlay {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .popup {
+        background-color: #111;
+        padding: 30px 24px;
+        border-radius: 12px;
+        text-align: center;
+        color: #fff;
+        max-width: 90%;
+        width: 320px;
+        box-shadow: 0 0 20px rgba(0, 255, 163, 0.2);
+        position: relative;
+        animation: fadeIn 0.4s ease-in-out;
+      }
+
+      .popup h2 {
+        margin-top: 0;
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+      }
+
+      .popup p {
+        margin-bottom: 0;
+        color: #ccc;
+      }
+
+      .close-popup {
+        position: absolute;
+        top: 12px;
+        right: 14px;
+        color: #999;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+      }
+
+      @media (max-width: 500px) {
+        .typing-header { font-size: 1.9rem; }
+        .brand { font-size: 1rem; left: 20px; top: 20px; }
+        #countdown, .subtext { font-size: 1rem; }
+        form { width: 90%; }
+        button { font-size: 0.95rem; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Background -->
+    <div id="vanta-bg"></div>
+
+    <!-- Brand -->
+    <div class="brand">Tu<span>NiaX</span></div>
+
+    <!-- Typing Heading -->
+    <h1 class="typing-header" id="main-heading"></h1>
+    <p class="subtext">Neural Networks that detect Tuberculosis and Pneumonia — with one chest X-ray.</p>
+
+    <!-- Countdown -->
+    <div id="countdown">Loading countdown...</div>
+
+    <!-- Form -->
+    <form action="https://formspree.io/f/xjkobdaz" method="POST" id="notify-form">
+      <input type="text" name="name" placeholder="Your name" required />
+      <input type="email" name="email" placeholder="Your email" required />
+      <textarea name="message" placeholder="Your message or thoughts (optional)"></textarea>
+      <button type="submit">Notify Me When It’s Ready</button>
+    </form>
+
+    <!-- Modal Popup -->
+    <div class="popup-overlay" id="thankyou-popup">
+      <div class="popup">
+        <div class="close-popup" onclick="closePopup()">✖</div>
+        <h2 id="popup-title">Thank you!</h2>
+        <p id="popup-message">We'll notify you when we launch.</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">&copy; 2025 TuNiaX. All rights reserved.</div>
+
+    <!-- Typing Animation -->
+    <script>
+      const heading = document.getElementById("main-heading");
+      const fullText = "AI-Powered Chest X-ray Screening for TB & Pneumonia";
+      let i = 0;
+
+      function typeHeading() {
+        if (i <= fullText.length) {
+          heading.textContent = fullText.slice(0, i);
+          i++;
+          setTimeout(typeHeading, 60);
+        }
+      }
+
+      typeHeading();
+    </script>
+
+    <!-- Thank You Popup JS -->
+    <script>
+      const form = document.getElementById('notify-form');
+      const popup = document.getElementById('thankyou-popup');
+      const popupTitle = document.getElementById('popup-title');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const data = new FormData(form);
+        const name = data.get("name");
+
+        fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        }).then(response => {
+          if (response.ok) {
+            popupTitle.textContent = `Thank you, ${name}!`;
+            popup.style.display = "flex";
+            form.reset();
+          } else {
+            alert("Something went wrong. Please try again later.");
+          }
+        });
+      });
+
+      function closePopup() {
+        popup.style.display = "none";
+      }
+    </script>
+
+    <!-- Countdown Script -->
+    <script>
+      const launchDate = new Date("2025-10-01T00:00:00").getTime();
+      const countdownEl = document.getElementById("countdown");
+
+      const updateCountdown = () => {
+        const now = new Date().getTime();
+        const diff = launchDate - now;
+
+        if (diff <= 0) {
+          countdownEl.innerHTML = "🚀 Launching soon!";
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        countdownEl.innerHTML = `Launching in ${days}d ${hours}h ${mins}m ${secs}s`;
+      };
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    </script>
+
+    <!-- Vanta Background Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script>
+      VANTA.NET({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x00aa77,  // Muted green
+        backgroundColor: 0x000000,
+        points: 8.00,
+        maxDistance: 25.00,
+        spacing: 20.00
+      });
+    </script>
+
+  </body>
+  </html>
